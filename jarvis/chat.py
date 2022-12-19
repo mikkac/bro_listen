@@ -7,12 +7,9 @@ import openai
 
 def init_chat_api(api_key: Optional[str]) -> None:
     openai.api_key = api_key
-    if openai.api_key is None:
-        print("To use copilot please set the OPENAI_API_KEY environment variable")
-        print("You can get an API key from https://beta.openai.com/account/api-keys")
-        print("To set the environment variable, run:")
-        print("export OPENAI_API_KEY=<your key>")
-        sys.exit(1)
+    if not openai.api_key:
+        raise AttributeError(
+            "\"openai_api_key\" cannot be empty. Please provide a valid API key. One can be generated via https://beta.openai.com/account/api-keys")
 
 
 def request_chat_response(prompt: str) -> str:

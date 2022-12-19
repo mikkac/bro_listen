@@ -9,27 +9,30 @@ from rich.panel import Panel
 
 from voice import VoiceRecognizer, VoskVoiceRecognizer, VoiceAPI
 from chat import init_chat_api, request_chat_response
-from utils import get_args, parse_config, Config
+from utils import get_args, Config
 
 
-def main(config: Config) -> None:
+def main(config: Config, console: Console) -> None:
     init_chat_api(config.openai_api_key)
 
     if config.voice_api == VoiceAPI.VOSK:
         voice_recognizer: VoiceRecognizer = VoskVoiceRecognizer(
             language=config.language, device=config.device_id)
+    else:
+        raise AttributeError(
+            "\"voice_api\" different than \"vosk\" is currently not supported :(")
 
     if config.enable_audio_response:
         engine = pyttsx3.init()
 
-    console = Console()
     with console.status("[bold green]Listening...") as status:
         for prompt in voice_recognizer.listen():
             status.stop()
             console.print(Panel(f'[bold green]You:[/bold green] {prompt}'))
             with console.status("[bold blue]Waiting for response...", spinner="point", spinner_style="blue"):
                 response = request_chat_response(prompt)
-                console.print(Panel(f'[bold blue]jarvis:[/bold blue] {response}'))
+                console.print(
+                    Panel(f'[bold blue]jarvis:[/bold blue] {response}'))
             if config.enable_audio_response:
                 with console.status("[bold yellow]Speaking 🔊", spinner="point", spinner_style="yellow"):
                     engine.say(response)
@@ -39,17 +42,17 @@ def main(config: Config) -> None:
 
 
 if __name__ == "__main__":
+    console: Console = Console()
     try:
         cmd_args: argparse.Namespace = get_args()
         if not cmd_args.config:
             from pathlib import Path
-            cmd_args.config = Path.home() / ".config" / "jarvis.toml"
-        print(cmd_args.config)
-        config: Config = parse_config(cmd_args.config)
-        main(config)
+            cmd_args.config: Path = Path.home() / ".config" / "jarvis.toml"
+        config: Config = Config(cmd_args.config)
+        main(config, console)
     except KeyboardInterrupt:
-        print("\nDone")
+        console.print("[bold yellow]Bye![/bold yellow]")
         sys.exit(0)
     except Exception as e:
-        print(type(e).__name__ + ": " + str(e))
+        console.print(f"[bold red]{type(e).__name__}: {e}[/bold red]")
         sys.exit(1)

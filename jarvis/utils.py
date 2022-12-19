@@ -17,21 +17,13 @@ def get_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-@dataclass
 class Config:
-    voice_api: VoiceAPI
-    language: str
-    openai_api_key: str
-    enable_audio_response: bool
-    device_id: str
-
-
-def parse_config(config_path: str) -> Config:
-    config_data: dict = toml.load(config_path)
-    return Config(
-        voice_api=VoiceAPI(config_data.get("voice_api", VoiceAPI.VOSK.value)),
-        language=config_data.get("language", "en-us"),
-        openai_api_key=config_data.get("openai_api_key", None),
-        enable_audio_response=config_data.get("enable_audio_response", False),
-        device_id=config_data.get("device_id", None)
-    )
+    def __init__(self, config_path: str) -> None:
+        config_data: dict = toml.load(config_path)
+        self.voice_api: VoiceAPI = VoiceAPI(
+            config_data.get("voice_api", VoiceAPI.VOSK.value))
+        self.language: str = config_data.get("language", "en-us")
+        self.openai_api_key: str = config_data.get("openai_api_key", None)
+        self.enable_audio_response: bool = config_data.get(
+            "enable_audio_response", False)
+        self.device_id: str = config_data.get("device_id", None)

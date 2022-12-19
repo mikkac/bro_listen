@@ -12,8 +12,9 @@ from vosk import Model, KaldiRecognizer, SetLogLevel
 
 class VoiceAPI(Enum):
     VOSK = "vosk"
-    GOOGLE = "google"
-    AZURE = "azure"
+    GOOGLE = "google"  # currently not supported
+    AZURE = "azure"  # currently not supported
+
 
 class VoiceRecognizer:
     @abstractmethod
