@@ -7,9 +7,9 @@ import pyttsx3
 from rich.console import Console
 from rich.panel import Panel
 
-from voice import VoiceRecognizer, VoskVoiceRecognizer, VoiceAPI
 from chat import init_chat_api, request_chat_response
 from utils import get_args, Config
+from voice import VoiceRecognizer, VoskVoiceRecognizer, VoiceAPI
 
 
 def main(config: Config, console: Console) -> None:

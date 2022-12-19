@@ -1,9 +1,6 @@
 import argparse
-from dataclasses import dataclass
 
-import sounddevice as sd
 import toml
-
 from voice import VoiceAPI
 
 

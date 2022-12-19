@@ -1,12 +1,11 @@
-#!/usr/bin/env python3
-
 from abc import abstractmethod
 from enum import Enum
 import json
 import queue
 import sys
-import sounddevice as sd
 from typing import Union
+
+import sounddevice as sd
 from vosk import Model, KaldiRecognizer, SetLogLevel
 
 
