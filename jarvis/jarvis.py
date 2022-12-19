@@ -3,6 +3,7 @@
 import argparse
 import sys
 
+import pyttsx3
 from rich.console import Console
 from rich.panel import Panel
 
@@ -18,6 +19,9 @@ def main(config: Config) -> None:
         voice_recognizer: VoiceRecognizer = VoskVoiceRecognizer(
             language=config.language, device=config.device_id)
 
+    if config.enable_audio_response:
+        engine = pyttsx3.init()
+
     console = Console()
     with console.status("[bold green]Listening...") as status:
         for prompt in voice_recognizer.listen():
@@ -26,6 +30,11 @@ def main(config: Config) -> None:
             with console.status("[bold blue]Waiting for response...", spinner="point", spinner_style="blue"):
                 response = request_chat_response(prompt)
                 console.print(Panel(f'[bold blue]jarvis:[/bold blue] {response}'))
+            if config.enable_audio_response:
+                with console.status("[bold yellow]Speaking 🔊", spinner="point", spinner_style="yellow"):
+                    engine.say(response)
+                    engine.runAndWait()
+
             status.start()
 
 
