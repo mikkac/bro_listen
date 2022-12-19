@@ -11,6 +11,7 @@ sounddevice = "^0.4.5"
 openai = "^0.25.0"
 pyttsx3 = "^2.90"
 rich = "^12.6.0"
+toml = "^0.10.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

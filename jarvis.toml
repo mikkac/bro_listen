@@ -1,0 +1,6 @@
+voice_api = "vosk"
+language = "en-us"
+enable_audio_response = true
+openai_api_key = "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"
+# openai_api_key = <insert_secret_key>
+# device_id = <audio_device_id>

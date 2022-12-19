@@ -1,35 +1,37 @@
 import argparse
-import sounddevice as sd
+from dataclasses import dataclass
 
-def int_or_str(text):
-    """Helper function for argument parsing."""
-    try:
-        return int(text)
-    except ValueError:
-        return text
+import sounddevice as sd
+import toml
+
+from voice import VoiceAPI
+
 
 def get_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(add_help=False)
-    parser.add_argument(
-        "-l", "--list-devices", action="store_true",
-        help="show list of audio devices and exit")
-    args, remaining = parser.parse_known_args()
-    if args.list_devices:
-        print(sd.query_devices())
-        parser.exit(0)
-    parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        parents=[parser])
-    parser.add_argument(
-        "-f", "--filename", type=str, metavar="FILENAME",
-        help="audio file to store recording to")
-    parser.add_argument(
-        "-d", "--device", type=int_or_str,
-        help="input device (numeric ID or substring)")
-    parser.add_argument(
-        "-a", "--audio", action='store_true',
-        help="Enable audio response")
+    parser = argparse.ArgumentParser(add_help=True)
 
-    return parser.parse_args(remaining)
-    
+    parser.add_argument(
+        "-c", "--config", type=str,
+        help="path to config file")
+
+    return parser.parse_args()
+
+
+@dataclass
+class Config:
+    voice_api: VoiceAPI
+    language: str
+    openai_api_key: str
+    enable_audio_response: bool
+    device_id: str
+
+
+def parse_config(config_path: str) -> Config:
+    config_data: dict = toml.load(config_path)
+    return Config(
+        voice_api=VoiceAPI(config_data.get("voice_api", VoiceAPI.VOSK.value)),
+        language=config_data.get("language", "en-us"),
+        openai_api_key=config_data.get("openai_api_key", None),
+        enable_audio_response=config_data.get("enable_audio_response", False),
+        device_id=config_data.get("device_id", None)
+    )

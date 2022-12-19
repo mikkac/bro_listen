@@ -6,7 +6,7 @@ import openai
 
 
 def init_chat_api(api_key: Optional[str]) -> None:
-    openai.api_key = os.environ.get("OPENAI_API_KEY")
+    openai.api_key = api_key
     if openai.api_key is None:
         print("To use copilot please set the OPENAI_API_KEY environment variable")
         print("You can get an API key from https://beta.openai.com/account/api-keys")

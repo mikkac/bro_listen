@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from abc import abstractmethod
+from enum import Enum
 import json
 import queue
 import sys
@@ -8,6 +9,11 @@ import sounddevice as sd
 from typing import Union
 from vosk import Model, KaldiRecognizer, SetLogLevel
 
+
+class VoiceAPI(Enum):
+    VOSK = "vosk"
+    GOOGLE = "google"
+    AZURE = "azure"
 
 class VoiceRecognizer:
     @abstractmethod
