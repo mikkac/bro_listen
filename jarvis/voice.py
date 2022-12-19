@@ -22,7 +22,7 @@ class VoskVoiceRecognizer(VoiceRecognizer):
         device_info: dict = sd.query_devices(device, "input")
         self.device: Union[str, int] = device
         self.samplerate: int = int(device_info["default_samplerate"])
-        
+
         SetLogLevel(-1)
         self.model: Model = Model(lang=language)
 

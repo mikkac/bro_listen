@@ -4,8 +4,8 @@ import argparse
 import os
 import sys
 
-from colored import fg, attr
 import pyttsx3
+from rich.console import Console
 
 from voice import VoiceRecognizer, VoskVoiceRecognizer
 from chat import init_chat_api, request_chat_response
@@ -18,21 +18,16 @@ def main(args: argparse.Namespace) -> None:
     voice_recognizer: VoiceRecognizer = VoskVoiceRecognizer(
         language="en-us", device=args.device)
 
-    print('-' * 80)
-    print(f'{attr("bold")}Waiting for command.. {attr("reset")}')
-    print('-' * 80)
-    for prompt in voice_recognizer.listen():
-        print(f'{fg("green")}{attr("bold")}Prompt:{attr("reset")}\n{prompt}\n')
+    console = Console()
+    with console.status("[bold green]Listening...") as status:
+        for prompt in voice_recognizer.listen():
+            status.stop()
+            console.print(f'[bold green]Prompt:[/bold green]\n{prompt}\n')
+            with console.status("[bold blue]Waiting for response...", spinner="point", spinner_style="blue"):
+                response = request_chat_response(prompt)
 
-        response = request_chat_response(prompt)
-
-        print(f'{fg("blue")}{attr("bold")}Response:{attr("reset")}\n{response}\n')
-
-        print('-' * 80)
-        print(f'{attr("bold")}Waiting for command...{attr("reset")}')
-        print('-' * 80)
-        # if audio:
-        # pyttsx3.speak(response)
+            console.print(f'[bold blue]Response:[/bold blue]\n{response}\n')
+            status.start()
 
 
 if __name__ == "__main__":
