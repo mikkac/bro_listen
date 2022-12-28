@@ -18,7 +18,7 @@ It's an terminal application that captures audio from microphone and queries cha
 Once `poetry` is enabled in the system, to install the project and its dependencies, execute following command:
 
 ```bash
-$ git clone https://github.com/mikkac/hey_jarvis.git && cd hey_jarvis && poetry install
+git clone https://github.com/mikkac/hey_jarvis.git && cd hey_jarvis && poetry install
 ```
 
 ## Configuration
@@ -39,13 +39,13 @@ Application supports several configuration parameters.
 
 Once configuration file has been provided, start the application with command:
 ```bash
-$ poetry run hey_jarvis
+poetry run hey_jarvis
 ```
 or
 
 ```bash
-$ poetry shell
-$ hey_jarvis
+poetry shell
+hey_jarvis
 ```
 
 ## License
