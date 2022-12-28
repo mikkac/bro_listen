@@ -5,6 +5,9 @@ from voice import VoiceAPI
 
 
 def get_args() -> argparse.Namespace:
+    """
+    Parses command line arguments.
+    """
     parser = argparse.ArgumentParser(add_help=True)
 
     parser.add_argument(
@@ -15,6 +18,10 @@ def get_args() -> argparse.Namespace:
 
 
 class Config:
+    """
+    Parses config file.
+    """
+
     def __init__(self, config_path: str) -> None:
         config_data: dict = toml.load(config_path)
         self.voice_api: VoiceAPI = VoiceAPI(

@@ -7,13 +7,16 @@ import pyttsx3
 from rich.console import Console
 from rich.panel import Panel
 
-from chat import init_chat_api, request_chat_response
+from chat import Chat
 from utils import get_args, Config
 from voice import VoiceRecognizer, VoskVoiceRecognizer, VoiceAPI
 
 
 def main(config: Config, console: Console) -> None:
-    init_chat_api(config.openai_api_key)
+    """
+    Main function that orchestrates chatting with OpenAI based on prompts given with oral prompts. 
+    """
+    chat: Chat = Chat(config.openai_api_key)
 
     if config.voice_api == VoiceAPI.VOSK:
         voice_recognizer: VoiceRecognizer = VoskVoiceRecognizer(
@@ -30,7 +33,7 @@ def main(config: Config, console: Console) -> None:
             status.stop()
             console.print(Panel(f'[bold green]You:[/bold green] {prompt}'))
             with console.status("[bold blue]Waiting for response...", spinner="point", spinner_style="blue"):
-                response = request_chat_response(prompt)
+                response = chat.ask(prompt)
                 console.print(
                     Panel(f'[bold blue]jarvis:[/bold blue] {response}'))
             if config.enable_audio_response:

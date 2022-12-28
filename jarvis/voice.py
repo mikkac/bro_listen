@@ -1,27 +1,40 @@
 from abc import abstractmethod
 from enum import Enum
+import sys
 import json
 import queue
-import sys
-from typing import Union
+from typing import Union, Generator
 
 import sounddevice as sd
 from vosk import Model, KaldiRecognizer, SetLogLevel
 
 
 class VoiceAPI(Enum):
+    """
+    Available voice APIs.
+    Note: Currently only VOSK is supported.
+    """
     VOSK = "vosk"
     GOOGLE = "google"  # currently not supported
     AZURE = "azure"  # currently not supported
 
 
 class VoiceRecognizer:
+    """
+    Interface for voice recognition functionality.
+    """
     @abstractmethod
-    def listen(self) -> None:
+    def listen(self) -> Generator[str, None, None]:
+        """
+        Listen for voice prompts, transcripts them and returns for further processing.
+        """
         pass
 
 
 class VoskVoiceRecognizer(VoiceRecognizer):
+    """
+    Recognizes voice using VOSK SDK
+    """
     data_queue: queue.Queue() = queue.Queue()
 
     def __init__(self, language: str = "en-us", device: Union[str, int] = None):
@@ -32,7 +45,11 @@ class VoskVoiceRecognizer(VoiceRecognizer):
         SetLogLevel(-1)
         self.model: Model = Model(lang=language)
 
-    def listen(self):
+    def listen(self) -> Generator[str, None, None]:
+        """
+        See `VoiceRecognizer.listen`
+        Note: This method is blocking
+        """
         with sd.RawInputStream(samplerate=self.samplerate, blocksize=8000, device=self.device,
                                dtype="int16", channels=1, callback=VoskVoiceRecognizer.callback):
             rec = KaldiRecognizer(self.model, self.samplerate)
