@@ -6,13 +6,20 @@ It's an terminal application that captures audio from microphone and queries cha
   <img src="https://github.com/mikkac/bro_listen/blob/master/demo/bro_demo.gif" alt="animated" />
 </p>
 
-
 ---
 **Note:** Currently `text-davinci-003` model is used as a chat backend. Unfortunately API for chatGPT is not yet provided by OpenAI.
 
 
 ## Installation
 
+### Via PyPI
+To install `bro_listen` package via PyPI, execute following command:
+```bash
+pip install bro-listen
+```
+**Note:** Consider creating a separate virtual environment if you want to avoid polluting system with dependencies of `bro_listen` package.
+
+### From source
 `poetry` is required to install the package from the source code. You can get it [here](https://python-poetry.org/docs/)
 
 Once `poetry` is enabled in the system, to install the project and its dependencies, execute following command:
@@ -36,8 +43,12 @@ Application supports several configuration parameters.
 * `device_id` - ID of recording device. It should be commented out or completely removed from configuration if default device shall be used.
 
 ## Usage
+If package has been installed via PyPI, run following command:
+```bash
+bro_listen
+```
 
-Once configuration file has been provided, start the application with command:
+If it was installed from source, start the application with command:
 ```bash
 poetry run bro_listen
 ```
