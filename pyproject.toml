@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "hey_jarvis"
+name = "bro_listen"
 version = "0.1.0"
 description = "Interact with openAI API with voice"
 authors = ["Mikolaj Kaczmarek <m.kaczmarek9@gmail.com>"]
@@ -12,15 +12,15 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Operating System :: MacOS",
-    "Operating System :: Windows",
+    "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
 ]
 keywords = ["voice recognition", "chat", "transcription", "vosk", "openai"]
-homepage = "https://github.com/mikkac/hey_jarvis"
-include = ["src/hey_jarvis/config.toml"]
+homepage = "https://github.com/mikkac/bro_listen"
+include = ["src/bro_listen/config.toml"]
 
 [tool.poetry.scripts]
-hey_jarvis = "hey_jarvis.hey_jarvis:run"
+bro_listen = "bro_listen.bro_listen:run"
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -57,4 +57,4 @@ push = true
 "pyproject.toml" = [
     'current_version = "{version}"',
 ]
-"src/hey_jarvis/__init__.py" = ["{version}"]
+"src/bro_listen/__init__.py" = ["{version}"]

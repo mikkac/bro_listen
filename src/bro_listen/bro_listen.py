@@ -8,9 +8,9 @@ import pyttsx3
 from rich.console import Console
 from rich.panel import Panel
 
-from hey_jarvis.chat import Chat
-from hey_jarvis.utils import Config, get_args, get_config_path
-from hey_jarvis.voice import (
+from bro_listen.chat import Chat
+from bro_listen.utils import Config, get_args, get_config_path
+from bro_listen.voice import (
     VoiceAPI,
     VoiceRecognizer,
     VoskVoiceRecognizer,
@@ -45,7 +45,7 @@ def main(config: Config, console: Console) -> None:  # pylint: disable=W0621
                 spinner_style="blue",
             ):
                 response = chat.ask(prompt)
-                console.print(Panel(f"[bold blue]jarvis:[/bold blue] {response}"))
+                console.print(Panel(f"[bold blue]bro:[/bold blue] {response}"))
             if config.enable_audio_response:
                 with console.status(
                     "[bold yellow]Speaking 🔊", spinner="point", spinner_style="yellow"
@@ -58,7 +58,7 @@ def main(config: Config, console: Console) -> None:  # pylint: disable=W0621
 
 def run() -> None:
     """
-    Runs hey_jarvis tool.
+    Runs bro_listen tool.
     """
     console: Console = Console()
     try:
