@@ -41,6 +41,12 @@ Application supports several configuration parameters.
 
 Once configuration file has been provided, start the application with command:
 ```bash
+poetry run hey_jarvis
+```
+or
+
+```bash
+poetry shell
 hey_jarvis
 ```
 
