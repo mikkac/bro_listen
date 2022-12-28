@@ -2,7 +2,7 @@
 name = "hey_jarvis"
 version = "0.1.0"
 description = "Interact with openAI API with voice"
-authors = ["m.kaczmarek9@gmail.com"]
+authors = ["Mikolaj Kaczmarek <m.kaczmarek9@gmail.com>"]
 readme = "README.md"
 license = "LICENSE.md"
 classifiers = [
