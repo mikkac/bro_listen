@@ -2,7 +2,7 @@
 name = "astroid"
 version = "2.12.13"
 description = "An abstract syntax tree for Python with inference support."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 
@@ -64,7 +64,7 @@ uvloop = ["uvloop (>=0.15.2)"]
 name = "bumpver"
 version = "2022.1120"
 description = "Bump version numbers in project files."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7"
 
@@ -117,7 +117,7 @@ unicode_backport = ["unicodedata2"]
 name = "click"
 version = "8.1.3"
 description = "Composable command line interface toolkit"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -155,7 +155,7 @@ python-versions = "*"
 name = "dill"
 version = "0.3.6"
 description = "serialize all of python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -213,7 +213,7 @@ python-versions = ">=3.5"
 name = "isort"
 version = "5.11.4"
 description = "A Python utility / library to sort Python imports."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7.0"
 
@@ -227,7 +227,7 @@ plugins = ["setuptools"]
 name = "lazy-object-proxy"
 version = "1.8.0"
 description = "A fast and thorough lazy object proxy."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -235,7 +235,7 @@ python-versions = ">=3.7"
 name = "lexid"
 version = "2021.1006"
 description = "Variable width build numbers with lexical ordering."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=2.7"
 
@@ -243,7 +243,7 @@ python-versions = ">=2.7"
 name = "mccabe"
 version = "0.7.0"
 description = "McCabe checker, plugin for flake8"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -259,7 +259,7 @@ python-versions = ">=3.7"
 name = "mypy"
 version = "0.991"
 description = "Optional static typing for Python"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -278,7 +278,7 @@ reports = ["lxml"]
 name = "mypy-extensions"
 version = "0.4.3"
 description = "Experimental type system extensions for programs checked with the mypy typechecker."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -333,14 +333,11 @@ et-xmlfile = "*"
 
 [[package]]
 name = "packaging"
-version = "21.3"
+version = "22.0"
 description = "Core utilities for Python packages"
 category = "dev"
 optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
+python-versions = ">=3.7"
 
 [[package]]
 name = "pandas"
@@ -374,7 +371,7 @@ python-versions = "*"
 name = "pathlib2"
 version = "2.3.7.post1"
 description = "Object-oriented filesystem paths"
-category = "main"
+category = "dev"
 optional = false
 python-versions = "*"
 
@@ -393,7 +390,7 @@ python-versions = ">=3.7"
 name = "platformdirs"
 version = "2.6.0"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -458,7 +455,7 @@ plugins = ["importlib-metadata"]
 name = "pylint"
 version = "2.15.9"
 description = "python code static checker"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7.2"
 
@@ -2437,17 +2434,6 @@ pyobjc-core = ">=9.0.1"
 pyobjc-framework-Cocoa = ">=9.0.1"
 
 [[package]]
-name = "pyparsing"
-version = "3.0.9"
-description = "pyparsing module - Classes and methods to define and execute parsing grammars"
-category = "dev"
-optional = false
-python-versions = ">=3.6.8"
-
-[package.extras]
-diagrams = ["railroad-diagrams", "jinja2"]
-
-[[package]]
 name = "pypiwin32"
 version = "223"
 description = ""
@@ -2605,7 +2591,7 @@ python-versions = ">=2.6, !=3.0.*, !=3.1.*, !=3.2.*"
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.7"
 
@@ -2613,7 +2599,7 @@ python-versions = ">=3.7"
 name = "tomlkit"
 version = "0.11.6"
 description = "Style preserving TOML library"
-category = "main"
+category = "dev"
 optional = false
 python-versions = ">=3.6"
 
@@ -2715,14 +2701,14 @@ python-versions = ">=3.7"
 name = "wrapt"
 version = "1.14.1"
 description = "Module for decorators, wrappers and monkey patching."
-category = "main"
+category = "dev"
 optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a3feedaea28f167265dcbfb24ead51ccb67d4a7b4ee7c195293396329d13787d"
+content-hash = "ea473ab76306480db2f6c2dae7f211b3eb798b2041f1fd1cfa7d3bdf5d7c8d2c"
 
 [metadata.files]
 astroid = [
@@ -2987,8 +2973,8 @@ openpyxl = [
     {file = "openpyxl-3.0.10.tar.gz", hash = "sha256:e47805627aebcf860edb4edf7987b1309c1b3632f3750538ed962bbcc3bd7449"},
 ]
 packaging = [
-    {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
-    {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
+    {file = "packaging-22.0-py3-none-any.whl", hash = "sha256:957e2148ba0e1a3b282772e791ef1d8083648bc131c8ab0c1feba110ce1146c3"},
+    {file = "packaging-22.0.tar.gz", hash = "sha256:2198ec20bd4c017b8f9717e00f0c8714076fc2fd93816750ab48e2c41de2cfd3"},
 ]
 pandas = [
     {file = "pandas-1.5.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:e9dbacd22555c2d47f262ef96bb4e30880e5956169741400af8b306bbb24a273"},
@@ -3872,10 +3858,6 @@ pyobjc-framework-webkit = [
     {file = "pyobjc_framework_WebKit-9.0.1-cp36-abi3-macosx_10_9_universal2.whl", hash = "sha256:037082f72fa1f1d87889fdc172726c3381769de24ca5207d596f3925df9b25f0"},
     {file = "pyobjc_framework_WebKit-9.0.1-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:952685b820545036833ed737600d32c344916a83b2af4e04acb4b618aaac9431"},
     {file = "pyobjc_framework_WebKit-9.0.1-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:28a7859401b5af7c47e17612b4b3baca6669e76f974f6f6bfe5e93921a00adec"},
-]
-pyparsing = [
-    {file = "pyparsing-3.0.9-py3-none-any.whl", hash = "sha256:5026bae9a10eeaefb61dab2f09052b9f4307d44aee4eda64b309723d8d206bbc"},
-    {file = "pyparsing-3.0.9.tar.gz", hash = "sha256:2b020ecf7d21b687f219b71ecad3631f644a47f01403fa1d1036b0c6416d70fb"},
 ]
 pypiwin32 = [
     {file = "pypiwin32-223-py3-none-any.whl", hash = "sha256:67adf399debc1d5d14dffc1ab5acacb800da569754fafdc576b2a039485aa775"},

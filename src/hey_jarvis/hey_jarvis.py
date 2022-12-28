@@ -8,9 +8,9 @@ import pyttsx3
 from rich.console import Console
 from rich.panel import Panel
 
-from chat import Chat  # pylint: disable=import-error
-from utils import Config, get_args  # pylint: disable=import-error
-from voice import (  # pylint: disable=import-error
+from hey_jarvis.chat import Chat
+from hey_jarvis.utils import Config, get_args, get_config_path
+from hey_jarvis.voice import (
     VoiceAPI,
     VoiceRecognizer,
     VoskVoiceRecognizer,
@@ -56,19 +56,24 @@ def main(config: Config, console: Console) -> None:  # pylint: disable=W0621
             status.start()
 
 
-if __name__ == "__main__":
+def run() -> None:
+    """
+    Runs hey_jarvis tool.
+    """
     console: Console = Console()
     try:
         cmd_args: argparse.Namespace = get_args()
         if not cmd_args.config:
-            from pathlib import Path
-
-            cmd_args.config = Path.home() / ".config" / "hey_jarvis" / "config.toml"
+            cmd_args.config = get_config_path()
         config: Config = Config(cmd_args.config)
         main(config, console)
     except KeyboardInterrupt:
         console.print("[bold yellow]Bye![/bold yellow]")
         sys.exit(0)
-    except AttributeError as e:
-        console.print(f"[bold red]{type(e).__name__}: {e}[/bold red]")
+    except AttributeError as error:
+        console.print(f"[bold red]{error}[/bold red]")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    run()

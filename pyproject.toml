@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Interact with openAI API with voice"
 authors = ["Mikolaj Kaczmarek <m.kaczmarek9@gmail.com>"]
 readme = "README.md"
-license = "LICENSE.md"
+license = "MIT License (MIT)"
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Development Status :: 4 - Beta",
@@ -16,12 +16,11 @@ classifiers = [
     "Operating System :: POSIX :: Linux",
 ]
 keywords = ["voice recognition", "chat", "transcription", "vosk", "openai"]
+homepage = "https://github.com/mikkac/hey_jarvis"
+include = ["src/hey_jarvis/config.toml"]
 
-[project.urls]
-Homepage = "https://github.com/mikkac/hey_jarvis"
-
-[project.scripts]
-hey_jarvis = "hey_jarvis.hey_jarvis:main"
+[tool.poetry.scripts]
+hey_jarvis = "hey_jarvis.hey_jarvis:run"
 
 [tool.poetry.dependencies]
 python = "^3.8"
