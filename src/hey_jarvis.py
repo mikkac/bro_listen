@@ -50,7 +50,7 @@ if __name__ == "__main__":
         cmd_args: argparse.Namespace = get_args()
         if not cmd_args.config:
             from pathlib import Path
-            cmd_args.config: Path = Path.home() / ".config" / "jarvis.toml"
+            cmd_args.config: Path = Path.home() / ".config" / "hey_jarvis" / "config.toml"
         config: Config = Config(cmd_args.config)
         main(config, console)
     except KeyboardInterrupt:
