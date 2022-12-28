@@ -12,7 +12,7 @@ def get_config_path() -> Path:
     """
     Finds configuration file path.
     If file under path "$HOME/.config/hey_jarvis/config.toml" is not found,
-    function tries second possible location which is this package installation directory.
+    function tries second possible location which is the package installation directory.
     If also this file cannot be found, `AttributeError` is raised.
     """
     default_config_file: Path = Path(os.path.dirname(__file__)) / "config.toml"
