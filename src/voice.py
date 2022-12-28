@@ -1,12 +1,13 @@
-from abc import abstractmethod
-from enum import Enum
-import sys
+"""voice module"""
 import json
 import queue
-from typing import Union, Generator
+import sys
+from abc import abstractmethod
+from enum import Enum
+from typing import Any, Generator, Union
 
 import sounddevice as sd
-from vosk import Model, KaldiRecognizer, SetLogLevel
+from vosk import KaldiRecognizer, Model, SetLogLevel
 
 
 class VoiceAPI(Enum):
@@ -14,28 +15,30 @@ class VoiceAPI(Enum):
     Available voice APIs.
     Note: Currently only VOSK is supported.
     """
+
     VOSK = "vosk"
     GOOGLE = "google"  # currently not supported
     AZURE = "azure"  # currently not supported
 
 
-class VoiceRecognizer:
+class VoiceRecognizer:  # pylint: disable=R0903
     """
     Interface for voice recognition functionality.
     """
+
     @abstractmethod
     def listen(self) -> Generator[str, None, None]:
         """
         Listen for voice prompts, transcripts them and returns for further processing.
         """
-        pass
 
 
 class VoskVoiceRecognizer(VoiceRecognizer):
     """
     Recognizes voice using VOSK SDK
     """
-    data_queue: queue.Queue() = queue.Queue()
+
+    data_queue: queue.Queue[Any] = queue.Queue()
 
     def __init__(self, language: str = "en-us", device: Union[str, int] = None):
         device_info: dict = sd.query_devices(device, "input")
@@ -50,8 +53,14 @@ class VoskVoiceRecognizer(VoiceRecognizer):
         See `VoiceRecognizer.listen`
         Note: This method is blocking
         """
-        with sd.RawInputStream(samplerate=self.samplerate, blocksize=8000, device=self.device,
-                               dtype="int16", channels=1, callback=VoskVoiceRecognizer.callback):
+        with sd.RawInputStream(
+            samplerate=self.samplerate,
+            blocksize=8000,
+            device=self.device,
+            dtype="int16",
+            channels=1,
+            callback=VoskVoiceRecognizer.callback,
+        ):
             rec = KaldiRecognizer(self.model, self.samplerate)
             while True:
                 data = self.data_queue.get()

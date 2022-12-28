@@ -1,7 +1,8 @@
+"""chat module"""
 import openai
 
 
-class Chat:
+class Chat:  # pylint: disable=R0903
     """
     Class that interfaces OpenAI API. It initializes the SDK and allows user to send prompts.
     """
@@ -9,13 +10,15 @@ class Chat:
     def __init__(self, api_key: str) -> None:
         """
         Initializes the OpenAI SDK with `api_key`.
-        One can obtain an API key via https://beta.openai.com/account/api-keys. 
+        One can obtain an API key via https://beta.openai.com/account/api-keys.
         Note: If `api_key` is empty, `AttributeError` will be raised.
         """
         openai.api_key = api_key
         if not openai.api_key:
             raise AttributeError(
-                "\"openai_api_key\" cannot be empty. Please provide a valid API key. One can be generated via https://beta.openai.com/account/api-keys")
+                '"openai_api_key" cannot be empty. Please provide a valid API key. '
+                "One can be generated via https://beta.openai.com/account/api-keys"
+            )
 
     def ask(self, prompt: str) -> str:
         """
