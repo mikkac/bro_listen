@@ -46,4 +46,4 @@ hey_jarvis
 
 ## License
 
-This project is licensed under the LICENSE file in the root directory of this repository.
+This project is licensed under the LICENSE file that [can be found here](https://github.com/mikkac/hey_jarvis/blob/master/LICENSE.md)
