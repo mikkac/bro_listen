@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bro_listen"
-version = "0.1.0"
+version = "0.2.0"
 description = "Interact with openAI API with voice"
 authors = ["Mikolaj Kaczmarek <m.kaczmarek9@gmail.com>"]
 readme = "README.md"
